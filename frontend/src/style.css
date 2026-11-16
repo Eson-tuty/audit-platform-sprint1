@@ -1,0 +1,67 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+  --font-serif: "Instrument Serif", ui-serif, Georgia, serif;
+
+  --color-paper: #f7f6f2;
+  --color-paper-2: #efede6;
+  --color-ink: #14161a;
+  --color-ink-2: #2a2e35;
+  --color-muted: #5d6370;
+  --color-line: #e2dfd6;
+  --color-accent: #1f6f5c;
+  --color-accent-2: #175746;
+  --color-accent-soft: #e2efe9;
+  --color-chart: #1a8a6e; /* data marks — validated: lightness band, chroma floor, 3:1 vs white */
+  --color-amber: #a8650f;
+  --color-amber-soft: #f8ecd8;
+  --color-danger: #b42318;
+  --color-danger-soft: #fbe7e5;
+  --color-info: #2457a6;
+  --color-info-soft: #e5edf9;
+}
+
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Rendered markdown from the CMS / University bodies */
+.prose-audit { line-height: 1.7; color: var(--color-ink-2); }
+.prose-audit h1 { font-size: 2rem; font-weight: 600; letter-spacing: -0.02em; margin: 0 0 1rem; color: var(--color-ink); }
+.prose-audit h2 { font-size: 1.375rem; font-weight: 600; letter-spacing: -0.01em; margin: 2.25rem 0 0.75rem; color: var(--color-ink); }
+.prose-audit h3 { font-size: 1.1rem; font-weight: 600; margin: 1.5rem 0 0.5rem; color: var(--color-ink); }
+.prose-audit p { margin: 0 0 1rem; }
+.prose-audit ul, .prose-audit ol { margin: 0 0 1rem; padding-left: 1.4rem; }
+.prose-audit ul { list-style: disc; }
+.prose-audit ol { list-style: decimal; }
+.prose-audit li { margin: 0.3rem 0; }
+.prose-audit li:has(> input[type="checkbox"]) { list-style: none; margin-left: -1.4rem; }
+.prose-audit li > input[type="checkbox"] { margin-right: 0.5rem; accent-color: var(--color-accent); }
+.prose-audit a { color: var(--color-accent); text-decoration: underline; text-underline-offset: 3px; }
+.prose-audit strong { color: var(--color-ink); }
+.prose-audit code { font-family: var(--font-mono); font-size: 0.85em; background: var(--color-paper-2); padding: 0.1em 0.35em; border-radius: 4px; }
+.prose-audit blockquote { border-left: 3px solid var(--color-accent); padding-left: 1rem; color: var(--color-muted); margin: 0 0 1rem; }
+
+/* Logo marquee */
+@keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+.marquee { animation: marquee 40s linear infinite; }
+@media (prefers-reduced-motion: reduce) { .marquee { animation: none; } }
+
+/* Grid paper background for figures */
+.grid-paper {
+  background-image:
+    linear-gradient(to right, color-mix(in srgb, var(--color-line) 70%, transparent) 1px, transparent 1px),
+    linear-gradient(to bottom, color-mix(in srgb, var(--color-line) 70%, transparent) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+@media print {
+  .no-print { display: none !important; }
+}
